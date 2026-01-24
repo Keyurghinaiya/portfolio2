@@ -41,11 +41,10 @@ export default function Contact() {
                     </a>
                 </motion.div>
 
-                <div className="mt-24 flex justify-center space-x-12 text-gray-500">
-                    <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-                    <a href="#" className="hover:text-white transition-colors">GitHub</a>
-                    <a href="#" className="hover:text-white transition-colors">Instagram</a>
-                    <a href="#" className="hover:text-white transition-colors">Twitter/X</a>
+                <div className="mt-24 flex justify-center flex-wrap gap-8 md:gap-12 text-gray-500">
+                    <a href="https://www.linkedin.com/in/keyurghinaiya" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+                    <a href="https://github.com/Keyurghinaiya" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
+                    <a href="https://www.instagram.com/keyur_819/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
                 </div>
 
                 <div className="mt-12 text-sm text-gray-600">

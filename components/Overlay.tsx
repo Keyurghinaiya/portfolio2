@@ -32,17 +32,17 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
             {/* Section 1: Right 20% */}
             <motion.div
                 style={{ opacity: opacity1, y: y1 }}
-                className="absolute top-1/2 right-[20%] -translate-y-1/2 text-right"
+                className="absolute top-1/2 right-[5%] md:right-[10%] -translate-y-1/2 text-right"
             >
                 <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-4">
                     Keyur Ghinaiya
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-400 font-light mb-6">
-                    UX Manager & Urban Planning Technologist
+                <p className="text-xl md:text-2xl text-blue-500 font-light mb-6">
+                    Urban Planning Technologist
                 </p>
-                <div className="space-y-1 text-base md:text-lg text-gray-500 font-mono italic">
-                    <p>A strategic setter on the volleyball court</p>
-                    <p>and a systems-thinker in the city.</p>
+                <div className="space-y-1 text-base md:text-lg text-blue-500/80 font-mono italic">
+                    <p>A strategic systems-thinker</p>
+                    <p>shaping the future of urban environments.</p>
                 </div>
             </motion.div>
 

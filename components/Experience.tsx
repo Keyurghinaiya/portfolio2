@@ -7,8 +7,16 @@ const experiences = [
         id: 1,
         role: "Planning Technologist",
         company: "ZZap Planning + Architecture Consultants",
-        period: "2024 - Present",
-        description: "Specializing in spatial systems and technical drafting to bridge the gap between architectural vision and urban constraints. Developing high-yield massing models and automated GIS workflows.",
+        period: "March 2025 - Present",
+        description: "Specializing in spatial systems and technical drafting. Responsible for accurate drafting, site plan development, and interdisciplinary collaboration. Developed Standard Operating Procedures (SOPs), high-yield massing models, and automated GIS workflows.",
+    },
+    {
+        id: 2,
+        role: "Honours Bachelor of Environmental Design and Planning",
+        company: "Fanshawe College",
+        period: "Graduated 2024",
+        description: "An intensive four-year degree integrating environmental design, urban planning, GIS, and advanced CAD communication. Developed expertise in drafting and visualization principles for landscape design. Highly skilled in creating professional documentation and design panels for complex planning processes. Actively participated in multidisciplinary student competitions, applying sustainable planning principles to resilient urban solutions.",
+        link: "https://keyurghinaiya.com/urban-oasis" // Placeholder for portfolio link
     }
 ];
 
@@ -65,9 +73,24 @@ export default function Experience() {
                                 {exp.company}
                             </div>
 
-                            <p className="text-gray-500 leading-relaxed max-w-2xl">
+                            <p className="text-gray-500 leading-relaxed max-w-2xl mb-4">
                                 {exp.description}
                             </p>
+
+                            {exp.link && (
+                                <a
+                                    href={exp.link}
+                                    className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Portfolio: Urban Oasis
+                                    <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="ArrowRight" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </a>
+                            )}
                         </motion.div>
                     ))}
                 </div>

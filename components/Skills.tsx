@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 const skillCategories = [
     {
         title: "Core Drafting",
-        skills: ["Civil3D", "AutoCAD", "SketchUp"],
+        skills: ["Civil3D", "AutoCAD", "SketchUp", "Trimble Layout"],
     },
     {
         title: "Spatial Analysis",
-        skills: ["QGIS", "ArcGIS", "RestAPI Web Map Servers"],
+        skills: ["QGIS", "ArcGIS Pro", "ArcGIS"],
     },
     {
         title: "Visualization",
