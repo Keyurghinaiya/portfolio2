@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+  --text-secondary: #A1A1AA;
+  --accent: #3B82F6;
+
+  --font-inter: var(--font-inter);
+  --font-playfair: var(--font-playfair);
+  --font-space-grotesk: var(--font-space-grotesk);
+  --font-jetbrains-mono: var(--font-jetbrains-mono);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 4rem;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 600;
+}
+
+.font-decorative {
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+}
+
+.tag-label {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+code,
+pre,
+.font-mono {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+.text-muted {
+  color: var(--text-secondary);
+}
