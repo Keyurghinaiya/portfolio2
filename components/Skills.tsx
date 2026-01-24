@@ -8,16 +8,20 @@ const skillCategories = [
         skills: ["Civil3D", "AutoCAD", "SketchUp", "Trimble Layout"],
     },
     {
-        title: "Spatial Analysis",
-        skills: ["QGIS", "ArcGIS Pro", "ArcGIS"],
+        title: "Planning",
+        skills: ["Policy Review", "Red Book", "Building Code (exploring)"],
+    },
+    {
+        title: "GIS",
+        skills: ["QGIS", "ArcGIS Pro", "ArcGIS Online", "Model Builder/Model Designer", "Postgre SQL (PostGIS)"],
     },
     {
         title: "Visualization",
-        skills: ["Enscape", "Photoshop", "AI (Generative Rendering)"],
+        skills: ["Enscape", "Photoshop", "Illustrator", "InDesign", "AI (Generative Rendering)"],
     },
     {
         title: "Development",
-        skills: ["Vibe Coding", "Python (Automations)", "Google AI Studio (Whisk)"],
+        skills: ["Antigravity", "Python (Automations)", "Google AI Studio (Whisk)"],
     },
 ];
 
@@ -25,7 +29,7 @@ export default function Skills() {
     return (
         <section className="relative z-10 min-h-[50vh] bg-[#121212] px-6 py-24 md:px-20 overflow-hidden">
             {/* Isometric Building Grid Background */}
-            <div className="absolute inset-0 opacity-[0.03]">
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `
                         linear-gradient(30deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
@@ -49,7 +53,7 @@ export default function Skills() {
                     Technical Arsenal
                 </motion.h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-12">
                     {skillCategories.map((category, index) => (
                         <motion.div
                             key={category.title}

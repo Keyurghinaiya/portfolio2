@@ -1,6 +1,6 @@
 "use client";
 
-import { useScroll, useMotionValueEvent } from "framer-motion";
+import { useScroll, useMotionValueEvent, useSpring } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
 import Overlay from "./Overlay";
 
@@ -17,6 +17,13 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"],
+    });
+
+    // Add Spring physics for buttery-smooth gliding
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
     });
 
     // Preload images
@@ -82,7 +89,7 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 // Re-draw current frame (approximation)
-                const currentProgress = scrollYProgress.get();
+                const currentProgress = smoothProgress.get();
                 const frameIndex = Math.min(
                     imageUrls.length - 1,
                     Math.floor(currentProgress * imageUrls.length)
@@ -95,10 +102,10 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
         handleResize(); // Initial size
 
         return () => window.removeEventListener("resize", handleResize);
-    }, [isLoaded, scrollYProgress, imageUrls.length, renderFrame]); // Added dependencies
+    }, [isLoaded, smoothProgress, imageUrls.length, renderFrame]); // Added dependencies
 
-    // Scroll listener
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    // Scroll listener - now listening to smoothProgress
+    useMotionValueEvent(smoothProgress, "change", (latest) => {
         if (!isLoaded || images.length === 0) return;
 
         const frameIndex = Math.min(
@@ -125,7 +132,7 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
                     ref={canvasRef}
                     className="h-full w-full object-cover"
                 />
-                <Overlay scrollYProgress={scrollYProgress} />
+                <Overlay scrollYProgress={smoothProgress} />
                 {!isLoaded && (
                     <div className="absolute inset-0 flex items-center justify-center text-white/50 text-sm">
                         Loading Sequence...

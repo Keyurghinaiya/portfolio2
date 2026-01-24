@@ -19,6 +19,12 @@ const macroProjects = [
 
 const microNodes = [
     {
+        id: "micro-4",
+        title: "Personal Portfolio",
+        category: "Micro Node / Web",
+        description: "A high-performance scrollytelling experience built with Next.js, Framer Motion, and Antigravity. Deployed on Vercel with automated GitHub CI/CD workflows.",
+    },
+    {
         id: "micro-1",
         title: "GIS SOP Automation",
         category: "Micro Node / Lab",
@@ -42,7 +48,7 @@ export default function Projects() {
     return (
         <section className="relative z-10 min-h-screen bg-[#121212] px-6 py-24 md:px-20 overflow-hidden">
             {/* Isometric Building Grid Background */}
-            <div className="absolute inset-0 opacity-[0.03]">
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `
                         linear-gradient(30deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
@@ -108,7 +114,7 @@ export default function Projects() {
                     <p className="text-gray-400 font-mono italic">Micro Nodes & Digital Garden</p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {microNodes.map((node) => (
                         <motion.div
                             key={node.id}

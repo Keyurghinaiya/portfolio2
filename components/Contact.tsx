@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 export default function Contact() {
     return (
-        <section className="relative z-10 py-24 bg-[#0a0a0a] border-t border-white/5 overflow-hidden">
+        <section className="relative z-10 min-h-screen flex items-center py-24 bg-[#0a0a0a] border-t border-white/5 overflow-hidden">
             {/* Isometric Building Grid Background */}
-            <div className="absolute inset-0 opacity-[0.03]">
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `
                         linear-gradient(30deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
@@ -20,7 +20,7 @@ export default function Contact() {
                     backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px'
                 }} />
             </div>
-            <div className="max-w-7xl mx-auto px-6 md:px-20 text-center">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -30,11 +30,11 @@ export default function Contact() {
                         Ready to shape the future?
                     </h2>
                     <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                        Whether you need a digital twin strategy, spatial analysis, or a custom urban visualization, I'm ready to collaborate.
+                        Whether you need a digital twin strategy, GIS strategy, or a custom urban visualization, I'm ready to collaborate.
                     </p>
 
                     <a
-                        href="mailto:hello@keyurghinaiya.com"
+                        href="mailto:kghinaiya4@gmail.com"
                         className="inline-block bg-white text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-500 hover:text-white transition-all duration-300 transform hover:scale-105"
                     >
                         Get in Touch

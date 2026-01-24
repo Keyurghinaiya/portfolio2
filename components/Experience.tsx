@@ -8,15 +8,27 @@ const experiences = [
         role: "Planning Technologist",
         company: "ZZap Planning + Architecture Consultants",
         period: "March 2025 - Present",
-        description: "Specializing in spatial systems and technical drafting. Responsible for accurate drafting, site plan development, and interdisciplinary collaboration. Developed Standard Operating Procedures (SOPs), high-yield massing models, and automated GIS workflows.",
+        details: [
+            "Specializing in spatial systems and technical drafting for complex urban projects.",
+            "Creating high-yield massing feasibility studies with future-editable models and parametric workflows.",
+            "Developed Standard Operating Procedures (SOPs) for standardized CAD and 3D modeling environments.",
+            "Automating GIS workflows via AI-driven scripts to accelerate development applications.",
+            "Collaborating across multidisciplinary teams for accurate site plan development and technical drafting."
+        ]
     },
     {
         id: 2,
         role: "Honours Bachelor of Environmental Design and Planning",
         company: "Fanshawe College",
         period: "Graduated 2024",
-        description: "An intensive four-year degree integrating environmental design, urban planning, GIS, and advanced CAD communication. Developed expertise in drafting and visualization principles for landscape design. Highly skilled in creating professional documentation and design panels for complex planning processes. Actively participated in multidisciplinary student competitions, applying sustainable planning principles to resilient urban solutions.",
-        link: "https://keyurghinaiya.com/urban-oasis" // Placeholder for portfolio link
+        details: [
+            "Intensive four-year degree integrating environmental design, urban planning, and GIS.",
+            "Developed expertise in advanced CAD communication and visualization principles for landscape design.",
+            "Highly skilled in creating professional documentation and design panels for complex planning processes.",
+            "Actively participated in multidisciplinary student competitions for resilient urban solutions.",
+            "Focus on sustainable planning principles and high-fidelity drafting."
+        ],
+        link: "https://www.linkedin.com/in/keyurghinaiya/overlay/1726510969396/single-media-viewer/?profileId=ACoAAC27P4UBAhrJthGmyycoNvAqQtUpUPXicFE"
     }
 ];
 
@@ -24,7 +36,7 @@ export default function Experience() {
     return (
         <section className="relative z-10 min-h-screen bg-[#121212] px-6 py-24 md:px-20 text-white overflow-hidden">
             {/* Isometric Building Grid Background */}
-            <div className="absolute inset-0 opacity-[0.03]">
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `
                         linear-gradient(30deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
@@ -69,13 +81,18 @@ export default function Experience() {
                                 </span>
                             </div>
 
-                            <div className="text-lg text-gray-400 mb-2 font-medium">
+                            <div className="text-lg text-gray-400 mb-6 font-medium">
                                 {exp.company}
                             </div>
 
-                            <p className="text-gray-500 leading-relaxed max-w-2xl mb-4">
-                                {exp.description}
-                            </p>
+                            <ul className="space-y-3 mb-8">
+                                {exp.details.map((detail, dIndex) => (
+                                    <li key={dIndex} className="text-gray-500 leading-relaxed max-w-2xl flex items-start">
+                                        <span className="w-1.5 h-1.5 bg-blue-500/40 rounded-full mt-2.5 mr-3 shrink-0" />
+                                        {detail}
+                                    </li>
+                                ))}
+                            </ul>
 
                             {exp.link && (
                                 <a
@@ -86,7 +103,6 @@ export default function Experience() {
                                 >
                                     View Portfolio: Urban Oasis
                                     <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="ArrowRight" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
                                 </a>

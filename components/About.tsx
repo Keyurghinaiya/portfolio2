@@ -12,7 +12,7 @@ export default function About() {
     return (
         <section className="relative z-10 min-h-[50vh] bg-[#121212] px-6 py-24 md:px-20 flex items-center overflow-hidden">
             {/* Isometric Building Grid Background */}
-            <div className="absolute inset-0 opacity-[0.03]">
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `
                         linear-gradient(30deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
@@ -48,8 +48,11 @@ export default function About() {
                         <h4 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-4">Personal Node</h4>
                         <div className="flex flex-wrap gap-4">
                             <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">Advanced Drafting & Site Planning</span>
+                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">Massing Feasibility Studies</span>
+                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">GIS</span>
+                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">3D Renderings & Animations</span>
+                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">Zoning Analysis</span>
                             <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">AI Prompt Engineering</span>
-                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">SOP Development</span>
                         </div>
                     </div>
                 </motion.div>

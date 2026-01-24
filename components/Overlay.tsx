@@ -37,10 +37,10 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-4">
                     Keyur Ghinaiya
                 </h1>
-                <p className="text-xl md:text-2xl text-blue-500 font-light mb-6">
+                <p className="text-2xl md:text-3xl text-blue-500 font-bold mb-6 font-space-grotesk tracking-tight">
                     Urban Planning Technologist
                 </p>
-                <div className="space-y-1 text-base md:text-lg text-blue-500/80 font-mono italic">
+                <div className="space-y-1 text-lg md:text-xl text-blue-500/80 font-space-grotesk font-semibold">
                     <p>A strategic systems-thinker</p>
                     <p>shaping the future of urban environments.</p>
                 </div>
@@ -51,7 +51,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity2, y: y2 }}
                 className="absolute top-1/2 left-10 md:left-20 -translate-y-1/2 max-w-lg"
             >
-                <h2 className="text-4xl md:text-7xl font-bold text-white leading-tight tracking-tight">
+                <h2 className="text-3xl md:text-5xl font-bold text-white leading-relaxed tracking-normal">
                     "Designing Spatial Systems <br />
                     with <span className="text-blue-500 font-mono">Infinite Imagination."</span>
                 </h2>

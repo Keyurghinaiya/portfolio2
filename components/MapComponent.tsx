@@ -1,6 +1,6 @@
 "use client";
 
-import { MapContainer, TileLayer, CircleMarker, Marker, Tooltip, Polygon } from "react-leaflet";
+import { MapContainer, TileLayer, CircleMarker, Marker, Tooltip, Circle } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -16,17 +16,6 @@ L.Marker.prototype.options.icon = DefaultIcon;
 export default function MapComponent() {
     const position: [number, number] = [44.6488, -63.5752]; // Halifax, NS coordinates
 
-    // Approximate boundary of Central Halifax
-    const centralHalifaxBoundary: [number, number][] = [
-        [44.655, -63.595],
-        [44.660, -63.585],
-        [44.655, -63.570],
-        [44.645, -63.565],
-        [44.635, -63.570],
-        [44.630, -63.585],
-        [44.640, -63.595],
-    ];
-
     return (
         <MapContainer
             center={position}
@@ -41,8 +30,9 @@ export default function MapComponent() {
                 url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
             />
 
-            <Polygon
-                positions={centralHalifaxBoundary}
+            <Circle
+                center={position}
+                radius={2000} // ~2km radius to cover central Halifax
                 pathOptions={{
                     color: "#3b82f6",
                     fillColor: "#3b82f6",

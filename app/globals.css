@@ -17,6 +17,11 @@
   --color-foreground: var(--foreground);
   --color-secondary: var(--text-secondary);
   --color-accent: var(--accent);
+
+  --font-inter: var(--font-inter);
+  --font-playfair: var(--font-playfair);
+  --font-space-grotesk: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
