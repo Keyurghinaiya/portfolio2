@@ -21,10 +21,12 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
 
     // Add Spring physics for buttery-smooth gliding
     const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
+        stiffness: 150,
+        damping: 40,
         restDelta: 0.001
     });
+
+    const lastFrameIndexRef = useRef<number>(-1);
 
     // Preload images
     useEffect(() => {
@@ -113,7 +115,10 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
             Math.floor(latest * (images.length - 1)) // Map 0-1 to 0-(n-1)
         );
 
-        requestAnimationFrame(() => renderFrame(frameIndex));
+        if (frameIndex !== lastFrameIndexRef.current) {
+            lastFrameIndexRef.current = frameIndex;
+            requestAnimationFrame(() => renderFrame(frameIndex));
+        }
     });
 
     // Initial draw once loaded
@@ -126,7 +131,7 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
 
 
     return (
-        <div ref={containerRef} className="relative h-[500vh] w-full bg-[#121212]">
+        <div ref={containerRef} className="relative h-[250vh] w-full bg-[#121212]">
             <div className="sticky top-0 h-screen w-full overflow-hidden">
                 <canvas
                     ref={canvasRef}
