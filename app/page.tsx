@@ -13,7 +13,7 @@ function getImageSequence() {
     const files = fs.readdirSync(sequenceDir);
     // Filter for png/webp and sort naturally
     return files
-      .filter((file) => /\.(png|webp|jpg)$/.test(file))
+      .filter((file) => /\.webp$/.test(file))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
       .map((file) => `/sequence/${file}`);
   } catch (error) {

@@ -131,7 +131,7 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
 
 
     return (
-        <div ref={containerRef} className="relative h-[250vh] w-full bg-[#121212]">
+        <div ref={containerRef} className="relative h-[400vh] w-full bg-[#121212]">
             <div className="sticky top-0 h-screen w-full overflow-hidden">
                 <canvas
                     ref={canvasRef}
