@@ -11,21 +11,7 @@ const LeafletMap = dynamic(() => import("./MapComponent"), {
 export default function About() {
     return (
         <section className="relative z-10 min-h-[50vh] px-6 py-24 md:px-20 flex items-center overflow-hidden">
-            {/* Isometric Building Grid Background */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: `
-                        linear-gradient(30deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
-                        linear-gradient(150deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
-                        linear-gradient(30deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
-                        linear-gradient(150deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
-                        linear-gradient(60deg, #60a5fa 25%, transparent 25.5%, transparent 75%, #60a5fa 75%, #60a5fa),
-                        linear-gradient(60deg, #60a5fa 25%, transparent 25.5%, transparent 75%, #60a5fa 75%, #60a5fa)
-                    `,
-                    backgroundSize: '80px 140px',
-                    backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px'
-                }} />
-            </div>
+
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}

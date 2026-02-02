@@ -5,21 +5,7 @@ import { motion } from "framer-motion";
 export default function Contact() {
     return (
         <section className="relative z-10 min-h-screen flex items-center py-24 border-t border-white/5 overflow-hidden">
-            {/* Isometric Building Grid Background */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: `
-                        linear-gradient(30deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
-                        linear-gradient(150deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
-                        linear-gradient(30deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
-                        linear-gradient(150deg, #3b82f6 12%, transparent 12.5%, transparent 87%, #3b82f6 87.5%, #3b82f6),
-                        linear-gradient(60deg, #60a5fa 25%, transparent 25.5%, transparent 75%, #60a5fa 75%, #60a5fa),
-                        linear-gradient(60deg, #60a5fa 25%, transparent 25.5%, transparent 75%, #60a5fa 75%, #60a5fa)
-                    `,
-                    backgroundSize: '80px 140px',
-                    backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px'
-                }} />
-            </div>
+
             <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -27,10 +13,10 @@ export default function Contact() {
                     viewport={{ once: true }}
                 >
                     <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">
-                        Ready to shape the future?
+                        Ready to Collaborate?
                     </h2>
                     <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                        Whether you need a digital twin strategy, GIS strategy, or a custom urban visualization, I&apos;m ready to collaborate.
+                        Want to collaborate on a side project
                     </p>
 
                     <a

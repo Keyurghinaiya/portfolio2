@@ -14,10 +14,25 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
     const [isLoaded, setIsLoaded] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
+    // 1. Local Scroll for Sequence Playback (0-100% of this container)
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"],
     });
+
+    // 2. Global Scroll for Post-Sequence Transitions
+    const { scrollY } = useScroll();
+
+    // Calculate sequence duration in pixels (approx 400vh)
+    // We'll use a state to store window height for accurate calc
+    const [windowHeight, setWindowHeight] = useState(0);
+
+    useEffect(() => {
+        setWindowHeight(window.innerHeight);
+        const handleResize = () => setWindowHeight(window.innerHeight);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     // Add Spring physics for buttery-smooth gliding
     const smoothProgress = useSpring(scrollYProgress, {
@@ -25,6 +40,35 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
         damping: 40,
         restDelta: 0.001
     });
+
+    // --- TRANSITION LOGIC ---
+    // Sequence ends at approx 300vh of scroll (since container is 400vh and sticky is 100vh, scrollable distance is 300vh)
+    // Actually, framer-motion useScroll offset "end end" means progress 1 is when container end hits viewport end.
+    // Container is 400vh. Scrollable distance is 300vh.
+
+    // We want effects to start AFTER the sequence finishes (or near the end).
+    // Let's map global scrollY to opacity/blur.
+    // Assumption: The Scrolly section is at the top. It ends at roughly 4 * windowHeight.
+    const sequenceEnd = windowHeight * 3; // Approx point where sticky behavior ends (300vh scroll)
+    const pageEnd = 10000; // Arbitrary large number or can be dynamic, but let's use range relative to viewport
+
+    // Dark Overlay Opacity
+    // Starts at sequence end: 0% -> 0.60 (at start of About) -> 0.80 (at end)
+    // We ramp to 0.60 quickly (over 0.5 viewport height) to ensure contrast as About text enters.
+    const overlayOpacity = useTransform(
+        scrollY,
+        [sequenceEnd, sequenceEnd + windowHeight * 0.5, sequenceEnd + 5 * windowHeight],
+        [0, 0.60, 0.80]
+    );
+
+    // Blur Intensity
+    // Syncs with opacity.
+    const blurAmount = useTransform(
+        scrollY,
+        [sequenceEnd, sequenceEnd + windowHeight * 0.5, sequenceEnd + 5 * windowHeight],
+        ["blur(0px)", "blur(4px)", "blur(10px)"]
+    );
+
 
     const lastFrameIndexRef = useRef<number>(-1);
 
@@ -104,7 +148,7 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
         handleResize(); // Initial size
 
         return () => window.removeEventListener("resize", handleResize);
-    }, [isLoaded, smoothProgress, imageUrls.length, renderFrame]); // Added dependencies
+    }, [isLoaded, smoothProgress, imageUrls.length, renderFrame]);
 
     // Scroll listener - now listening to smoothProgress
     useMotionValueEvent(smoothProgress, "change", (latest) => {
@@ -130,27 +174,52 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
     }, [isLoaded, renderFrame]);
 
 
-    // Zoom transformation only (Blur is too expensive for smooth scrolling)
+    // Zoom transformation only (Blur is handled by the overlay mask now)
     const scale = useTransform(smoothProgress, [0, 1], [1, 1.15]);
 
     return (
-        <div ref={containerRef} className="relative h-[400vh] w-full bg-[#121212]">
-            <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div ref={containerRef} className="relative h-[400vh] w-full">
+            {/* 
+                FIXED CONTAINER 
+                This sits behind everything and persists.
+                z-index is -1 to be behind content, but we need to ensure content above has no background.
+            */}
+            <div className="fixed inset-0 h-screen w-full overflow-hidden -z-10">
                 <motion.div
                     style={{ scale }}
-                    className="h-full w-full"
+                    className="h-full w-full relative"
                 >
                     <canvas
                         ref={canvasRef}
                         className="h-full w-full object-cover"
                     />
+
+                    {/* TRANSITION OVERLAY: Darken + Blur */}
+                    {/* Note: Backdrop-filter can be heavy. Using simple opacity overlay for darkness. 
+                        If blur is needed on the image itself, we can apply filter to the canvas wrapper 
+                        OR use backdrop-filter on this overlay.
+                        Given requirement: "ADD a background transition with a blur + dark overlay effect"
+                    */}
+                    <motion.div
+                        className="absolute inset-0 bg-black pointer-events-none"
+                        style={{
+                            opacity: overlayOpacity,
+                            backdropFilter: blurAmount,
+                            WebkitBackdropFilter: blurAmount // Safari support
+                        }}
+                    />
                 </motion.div>
-                <Overlay scrollYProgress={smoothProgress} />
+
                 {!isLoaded && (
-                    <div className="absolute inset-0 flex items-center justify-center text-white/50 text-sm">
+                    <div className="absolute inset-0 flex items-center justify-center text-white/50 text-sm bg-[#121212]">
                         Loading Sequence...
                     </div>
                 )}
+            </div>
+
+            {/* TEXT OVERLAY (Scrolly content) */}
+            <div className="sticky top-0 h-screen w-full pointer-events-none">
+                <Overlay scrollYProgress={smoothProgress} />
             </div>
         </div>
     );
