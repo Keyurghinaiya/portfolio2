@@ -24,8 +24,13 @@
   --font-mono: var(--font-jetbrains-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
+  background: url('/sequence/frame_191_delay-0.042s.webp') no-repeat center center fixed;
+  background-size: cover;
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
   font-size: 1rem;

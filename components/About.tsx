@@ -10,7 +10,7 @@ const LeafletMap = dynamic(() => import("./MapComponent"), {
 
 export default function About() {
     return (
-        <section className="relative z-10 min-h-[50vh] bg-[#121212] px-6 py-24 md:px-20 flex items-center overflow-hidden">
+        <section className="relative z-10 min-h-[50vh] px-6 py-24 md:px-20 flex items-center overflow-hidden">
             {/* Isometric Building Grid Background */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{
@@ -41,7 +41,7 @@ export default function About() {
                         As an <span className="text-white">Urban Planning Technologist</span>, I build tools that translate rigid physical constraints into fluid digital workflows.
                     </p>
                     <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-8">
-                        Whether it's optimizing a 150-acre master plan or automating GIS workflows via AI, my focus is always on high-yield, data-backed solutions.
+                        Whether it&apos;s optimizing a 150-acre master plan or automating GIS workflows via AI, my focus is always on high-yield, data-backed solutions.
                     </p>
 
                     <div className="border-t border-white/10 pt-8 mt-8">

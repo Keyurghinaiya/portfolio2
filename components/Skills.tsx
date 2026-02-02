@@ -27,7 +27,7 @@ const skillCategories = [
 
 export default function Skills() {
     return (
-        <section className="relative z-10 min-h-[50vh] bg-[#121212] px-6 py-24 md:px-20 overflow-hidden">
+        <section className="relative z-10 min-h-[50vh] px-6 py-24 md:px-20 overflow-hidden">
             {/* Isometric Building Grid Background */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{

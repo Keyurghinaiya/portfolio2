@@ -2,7 +2,25 @@
 
 import { motion } from "framer-motion";
 
-const experiences = [
+import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const FlipBookOverlay = dynamic(() => import("./FlipBookOverlay"), {
+    ssr: false
+});
+
+
+interface ExperienceItem {
+    id: number;
+    role: string;
+    company: string;
+    period: string;
+    details: string[];
+    links?: { label: string; type: string }[];
+    link?: string;
+}
+
+const experiences: ExperienceItem[] = [
     {
         id: 1,
         role: "Planning Technologist",
@@ -18,7 +36,7 @@ const experiences = [
     },
     {
         id: 2,
-        role: "Honours Bachelor of Environmental Design and Planning",
+        role: "Honours Bachelor of Environmental Studies",
         company: "Fanshawe College",
         period: "Graduated 2024",
         details: [
@@ -28,13 +46,24 @@ const experiences = [
             "Actively participated in multidisciplinary student competitions for resilient urban solutions.",
             "Focus on sustainable planning principles and high-fidelity drafting."
         ],
-        link: "https://www.linkedin.com/in/keyurghinaiya/overlay/1726510969396/single-media-viewer/?profileId=ACoAAC27P4UBAhrJthGmyycoNvAqQtUpUPXicFE"
+        links: [
+            { label: "View my Portfolio", type: "portfolio" }
+        ]
     }
 ];
 
 export default function Experience() {
+    const [activePortfolio, setActivePortfolio] = useState<string | null>(null);
+
+    const togglePortfolio = (type: string) => {
+        if (activePortfolio === type) {
+            setActivePortfolio(null);
+        } else {
+            setActivePortfolio(type);
+        }
+    };
     return (
-        <section className="relative z-10 min-h-screen bg-[#121212] px-6 py-24 md:px-20 text-white overflow-hidden">
+        <section className="relative z-10 min-h-screen px-6 py-24 md:px-20 text-white overflow-hidden">
             {/* Isometric Building Grid Background */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{
@@ -94,7 +123,38 @@ export default function Experience() {
                                 ))}
                             </ul>
 
-                            {exp.link && (
+                            {exp.links ? (
+                                <div className="flex flex-wrap gap-6">
+                                    {exp.links.map((link, lIndex) => (
+                                        <div key={lIndex}>
+                                            <button
+                                                onClick={() => togglePortfolio(link.type)}
+                                                className={`inline-flex items-center transition-colors text-sm font-medium cursor-pointer ${activePortfolio === link.type ? 'text-blue-300' : 'text-blue-400 hover:text-blue-300'
+                                                    }`}
+                                            >
+                                                {activePortfolio === link.type ? 'Close Portfolio' : link.label}
+                                                <svg className={`ml-2 w-4 h-4 transition-transform duration-300 ${activePortfolio === link.type ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : null}
+
+                            {/* Inline Portfolio Viewer */}
+                            {exp.links?.some(l => activePortfolio === l.type) && (
+                                <div className="mt-8">
+                                    <FlipBookOverlay
+                                        onClose={() => setActivePortfolio(null)}
+                                        pdfUrl="https://flipbookpdf.net/web/site/7dbf4cfe074a7e360d29f5b95c884cd1cd593ebc202602.pdf.html"
+                                    />
+                                </div>
+                            )}
+
+
+                            {/* Legacy single link fallback if any */}
+                            {"link" in exp && exp.link && (
                                 <a
                                     href={exp.link}
                                     className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
@@ -111,6 +171,8 @@ export default function Experience() {
                     ))}
                 </div>
             </div>
+
+
         </section>
     );
 }

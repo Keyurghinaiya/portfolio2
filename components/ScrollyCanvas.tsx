@@ -1,6 +1,6 @@
 "use client";
 
-import { useScroll, useMotionValueEvent, useSpring } from "framer-motion";
+import { useScroll, useMotionValueEvent, useSpring, useTransform, motion } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
 import Overlay from "./Overlay";
 
@@ -130,13 +130,21 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
     }, [isLoaded, renderFrame]);
 
 
+    // Zoom transformation only (Blur is too expensive for smooth scrolling)
+    const scale = useTransform(smoothProgress, [0, 1], [1, 1.15]);
+
     return (
         <div ref={containerRef} className="relative h-[400vh] w-full bg-[#121212]">
             <div className="sticky top-0 h-screen w-full overflow-hidden">
-                <canvas
-                    ref={canvasRef}
-                    className="h-full w-full object-cover"
-                />
+                <motion.div
+                    style={{ scale }}
+                    className="h-full w-full"
+                >
+                    <canvas
+                        ref={canvasRef}
+                        className="h-full w-full object-cover"
+                    />
+                </motion.div>
                 <Overlay scrollYProgress={smoothProgress} />
                 {!isLoaded && (
                     <div className="absolute inset-0 flex items-center justify-center text-white/50 text-sm">

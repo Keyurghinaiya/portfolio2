@@ -42,11 +42,17 @@ const microNodes = [
         category: "Micro Node / Systems",
         description: "Integrated web map servers to create live-updating geospatial datasets for internal planning workflows.",
     },
+    {
+        id: "micro-5",
+        title: "ZoneAI",
+        category: "Micro Node / Lab",
+        description: "A lightweight zoning finder built to explore Python, geospatial workflows, and rapid app development.",
+    },
 ];
 
 export default function Projects() {
     return (
-        <section className="relative z-10 min-h-screen bg-[#121212] px-6 py-24 md:px-20 overflow-hidden">
+        <section className="relative z-10 min-h-screen px-6 py-24 md:px-20 overflow-hidden">
             {/* Isometric Building Grid Background */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{

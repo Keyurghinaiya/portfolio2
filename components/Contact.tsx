@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Contact() {
     return (
-        <section className="relative z-10 min-h-screen flex items-center py-24 bg-[#0a0a0a] border-t border-white/5 overflow-hidden">
+        <section className="relative z-10 min-h-screen flex items-center py-24 border-t border-white/5 overflow-hidden">
             {/* Isometric Building Grid Background */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <div className="absolute inset-0" style={{
@@ -30,7 +30,7 @@ export default function Contact() {
                         Ready to shape the future?
                     </h2>
                     <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                        Whether you need a digital twin strategy, GIS strategy, or a custom urban visualization, I'm ready to collaborate.
+                        Whether you need a digital twin strategy, GIS strategy, or a custom urban visualization, I&apos;m ready to collaborate.
                     </p>
 
                     <a

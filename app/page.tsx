@@ -22,17 +22,32 @@ function getImageSequence() {
   }
 }
 
+import Header from "@/components/Header";
+
 export default function Home() {
   const imageUrls = getImageSequence();
 
   return (
     <main>
-      <ClientScrollyCanvas imageUrls={imageUrls} />
-      <About />
-      <Experience />
-      <Skills />
-      <Projects />
-      <Contact />
+      <Header />
+      <div id="home">
+        <ClientScrollyCanvas imageUrls={imageUrls} />
+      </div>
+      <div id="about">
+        <About />
+      </div>
+      <div id="experience">
+        <Experience />
+      </div>
+      <div id="skills">
+        <Skills />
+      </div>
+      <div id="projects">
+        <Projects />
+      </div>
+      <div id="contact">
+        <Contact />
+      </div>
     </main>
   );
 }

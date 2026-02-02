@@ -52,8 +52,8 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 className="absolute top-1/2 left-10 md:left-20 -translate-y-1/2 max-w-lg"
             >
                 <h2 className="text-3xl md:text-5xl font-bold text-white leading-relaxed tracking-normal">
-                    "Designing Spatial Systems <br />
-                    with <span className="text-blue-500 font-mono">Infinite Imagination."</span>
+                    &quot;Designing Spatial Systems <br />
+                    with <span className="text-blue-500 font-mono">Infinite Imagination.&quot;</span>
                 </h2>
             </motion.div>
 
