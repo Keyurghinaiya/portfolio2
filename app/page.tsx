@@ -30,24 +30,12 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <div id="home">
-        <ClientScrollyCanvas imageUrls={imageUrls} />
-      </div>
-      <div id="about">
-        <About />
-      </div>
-      <div id="experience">
-        <Experience />
-      </div>
-      <div id="skills">
-        <Skills />
-      </div>
-      <div id="projects">
-        <Projects />
-      </div>
-      <div id="contact">
-        <Contact />
-      </div>
+      <ClientScrollyCanvas imageUrls={imageUrls} />
+      <About />
+      <Experience />
+      <Skills />
+      <Projects />
+      <Contact />
     </main>
   );
 }

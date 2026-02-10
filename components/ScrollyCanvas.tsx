@@ -24,7 +24,6 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
     const { scrollY } = useScroll();
 
     // Calculate sequence duration in pixels (approx 400vh)
-    // We'll use a state to store window height for accurate calc
     const [windowHeight, setWindowHeight] = useState(0);
 
     useEffect(() => {
@@ -41,34 +40,16 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
         restDelta: 0.001
     });
 
-    // --- TRANSITION LOGIC ---
-    // Sequence ends at approx 300vh of scroll (since container is 400vh and sticky is 100vh, scrollable distance is 300vh)
-    // Actually, framer-motion useScroll offset "end end" means progress 1 is when container end hits viewport end.
-    // Container is 400vh. Scrollable distance is 300vh.
+    // --- LIGHTWEIGHT TRANSITION LOGIC ---
+    // Sequence ends at approx 300vh of scroll (approx 3 * viewport height)
+    const sequenceEnd = windowHeight * 3;
 
-    // We want effects to start AFTER the sequence finishes (or near the end).
-    // Let's map global scrollY to opacity/blur.
-    // Assumption: The Scrolly section is at the top. It ends at roughly 4 * windowHeight.
-    const sequenceEnd = windowHeight * 3; // Approx point where sticky behavior ends (300vh scroll)
-    const pageEnd = 10000; // Arbitrary large number or can be dynamic, but let's use range relative to viewport
-
-    // Dark Overlay Opacity
-    // Starts at sequence end: 0% -> 0.60 (at start of About) -> 0.80 (at end)
-    // We ramp to 0.60 quickly (over 0.5 viewport height) to ensure contrast as About text enters.
+    // Fade in overlay only after sequence starts finishing
     const overlayOpacity = useTransform(
         scrollY,
-        [sequenceEnd, sequenceEnd + windowHeight * 0.5, sequenceEnd + 5 * windowHeight],
-        [0, 0.60, 0.80]
+        [sequenceEnd, sequenceEnd + windowHeight * 0.5],
+        [0, 0.85]
     );
-
-    // Blur Intensity
-    // Syncs with opacity.
-    const blurAmount = useTransform(
-        scrollY,
-        [sequenceEnd, sequenceEnd + windowHeight * 0.5, sequenceEnd + 5 * windowHeight],
-        ["blur(0px)", "blur(4px)", "blur(10px)"]
-    );
-
 
     const lastFrameIndexRef = useRef<number>(-1);
 
@@ -178,13 +159,13 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
     const scale = useTransform(smoothProgress, [0, 1], [1, 1.15]);
 
     return (
-        <div ref={containerRef} className="relative h-[400vh] w-full">
+        <div ref={containerRef} className="relative h-[400vh] w-full" id="home">
             {/* 
                 FIXED CONTAINER 
                 This sits behind everything and persists.
                 z-index is -1 to be behind content, but we need to ensure content above has no background.
             */}
-            <div className="fixed inset-0 h-screen w-full overflow-hidden -z-10">
+            <div className="fixed inset-0 h-screen w-full overflow-hidden -z-10" aria-hidden="true">
                 <motion.div
                     style={{ scale }}
                     className="h-full w-full relative"
@@ -192,6 +173,8 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
                     <canvas
                         ref={canvasRef}
                         className="h-full w-full object-cover"
+                        aria-label="Animated hero sequence showing urban planning projects"
+                        role="img"
                     />
 
                     {/* TRANSITION OVERLAY: Darken + Blur */}
@@ -202,11 +185,7 @@ export default function ScrollyCanvas({ imageUrls }: ScrollyCanvasProps) {
                     */}
                     <motion.div
                         className="absolute inset-0 bg-black pointer-events-none"
-                        style={{
-                            opacity: overlayOpacity,
-                            backdropFilter: blurAmount,
-                            WebkitBackdropFilter: blurAmount // Safari support
-                        }}
+                        style={{ opacity: overlayOpacity }}
                     />
                 </motion.div>
 

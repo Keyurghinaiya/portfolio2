@@ -5,13 +5,12 @@ import dynamic from "next/dynamic";
 
 const LeafletMap = dynamic(() => import("./MapComponent"), {
     ssr: false,
-    loading: () => <div className="h-full w-full bg-[#1a1a1a] animate-pulse" />
+    loading: () => <div className="h-full w-full bg-[#1a1a1a] animate-pulse" aria-hidden="true" />
 });
 
 export default function About() {
     return (
-        <section className="relative z-10 min-h-[50vh] px-6 py-24 md:px-20 flex items-center overflow-hidden">
-
+        <section className="relative z-10 min-h-[50vh] px-6 py-24 md:px-20 flex items-center overflow-hidden" id="about">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
@@ -32,13 +31,23 @@ export default function About() {
 
                     <div className="border-t border-white/10 pt-8 mt-8">
                         <h4 className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-4">Personal Node</h4>
-                        <div className="flex flex-wrap gap-4">
-                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">Advanced Drafting & Site Planning</span>
-                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">Massing Feasibility Studies</span>
-                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">GIS</span>
-                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">3D Renderings & Animations</span>
-                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">Zoning Analysis</span>
-                            <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">AI Prompt Engineering</span>
+                        <div className="flex flex-wrap gap-4" role="list" aria-label="Core Competencies">
+                            {[
+                                "Advanced Drafting & Site Planning",
+                                "Massing Feasibility Studies",
+                                "GIS",
+                                "3D Renderings & Animations",
+                                "Zoning Analysis",
+                                "AI Prompt Engineering"
+                            ].map((skill) => (
+                                <span
+                                    key={skill}
+                                    className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300"
+                                    role="listitem"
+                                >
+                                    {skill}
+                                </span>
+                            ))}
                         </div>
                     </div>
                 </motion.div>
@@ -49,10 +58,10 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                     className="relative h-[400px] w-full rounded-2xl overflow-hidden border border-white/5"
+                    aria-label="Interactive map showing location: Halifax, Nova Scotia"
                 >
                     <LeafletMap />
-                    {/* Overlay gradient for seamless integration */}
-                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-blue-900/10 to-transparent" />
+                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-blue-900/10 to-transparent" aria-hidden="true" />
                 </motion.div>
             </div>
         </section>

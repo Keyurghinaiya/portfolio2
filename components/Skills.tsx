@@ -1,34 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const skillCategories = [
-    {
-        title: "Core Drafting",
-        skills: ["Civil3D", "AutoCAD", "SketchUp", "Trimble Layout"],
-    },
-    {
-        title: "Planning",
-        skills: ["Policy Review", "Red Book", "Building Code (exploring)"],
-    },
-    {
-        title: "GIS",
-        skills: ["QGIS", "ArcGIS Pro", "ArcGIS Online", "Model Builder/Model Designer", "Postgre SQL (PostGIS)"],
-    },
-    {
-        title: "Visualization",
-        skills: ["Enscape", "Photoshop", "Illustrator", "InDesign", "AI (Generative Rendering)"],
-    },
-    {
-        title: "Development",
-        skills: ["Antigravity", "Python (Automations)", "Google AI Studio (Whisk)"],
-    },
-];
+import { skillCategories } from "@/data/portfolio";
 
 export default function Skills() {
     return (
-        <section className="relative z-10 min-h-[50vh] px-6 py-24 md:px-20 overflow-hidden">
-
+        <section className="relative z-10 min-h-[50vh] px-6 py-24 md:px-20 overflow-hidden" id="skills">
             <div className="max-w-7xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
@@ -51,10 +28,10 @@ export default function Skills() {
                             <h3 className="text-xl font-semibold text-blue-400 mb-6 border-b border-white/10 pb-2">
                                 {category.title}
                             </h3>
-                            <ul className="space-y-3">
+                            <ul className="space-y-3" aria-label={`Skills in ${category.title}`}>
                                 {category.skills.map((skill) => (
                                     <li key={skill} className="text-gray-400 hover:text-white transition-colors flex items-center">
-                                        <span className="w-1.5 h-1.5 bg-white/20 rounded-full mr-3" />
+                                        <span className="w-1.5 h-1.5 bg-white/20 rounded-full mr-3" aria-hidden="true" />
                                         {skill}
                                     </li>
                                 ))}

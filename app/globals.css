@@ -26,6 +26,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Faster scrolling on some browsers */
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -35,6 +37,15 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   overflow-x: hidden;
+  /* Hint for better rendering of text during scroll */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Base class for scroll optimization */
+section {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 h1 {
