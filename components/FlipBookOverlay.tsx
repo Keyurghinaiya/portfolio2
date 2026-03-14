@@ -16,7 +16,7 @@ export default function FlipBookOverlay({ onClose, pdfUrl }: { onClose: () => vo
             {/* Header controls */}
             <div className="flex justify-between items-center p-4 border-b border-white/10 bg-white/5">
                 <div className="flex items-center gap-4">
-                    <h3 className="text-sm font-mark tracking-widest text-white/70 uppercase">Portfolio Viewer</h3>
+                    <h3 className="text-sm font-mono tracking-widest text-white/70 uppercase">Portfolio Viewer</h3>
                 </div>
                 <div className="flex items-center gap-2">
                     <a

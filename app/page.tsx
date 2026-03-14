@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
+import Header from "@/components/Header";
 
 function getImageSequence() {
   const sequenceDir = path.join(process.cwd(), "public", "sequence");
@@ -21,8 +22,6 @@ function getImageSequence() {
     return [];
   }
 }
-
-import Header from "@/components/Header";
 
 export default function Home() {
   const imageUrls = getImageSequence();
